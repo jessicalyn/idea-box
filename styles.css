@@ -1,6 +1,9 @@
 body {
   font-family: 'Open Sans', sans-serif;
-  color: #7C7879
+  color: #7C7879;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 header {
@@ -16,21 +19,23 @@ h1 {
   color: #FFFFFF;
 }
 
-.input--form {
+.input-form {
   background-color: #EAEAEA;
+  display: flex;
 }
 
 .input-form__title,
-.input-form__body {
+.input-form__body,
+.ideas__card {
   background-color: #FFFFFF;
   border: 2px solid #D2CCCD;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 .input-form__save {
   background-color: #6E646B;
   color: #FFFFFF;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 .ideas {
