@@ -1,5 +1,6 @@
-* {
+body {
   font-family: 'Open Sans', sans-serif;
+  color: #7C7879
 }
 
 header {
@@ -19,3 +20,23 @@ h1 {
   background-color: #EAEAEA;
 }
 
+.input-form__title,
+.input-form__body {
+  background-color: #FFFFFF;
+  border: 2px solid #D2CCCD;
+  border-radius: 6px;
+}
+
+.input-form__save {
+  background-color: #6E646B;
+  color: #FFFFFF;
+  border-radius: 6px;
+}
+
+.ideas {
+  background-color: #FFFFFF;
+}
+
+h2 {
+  color: #6E646B;
+}
