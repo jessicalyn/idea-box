@@ -1,0 +1,21 @@
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+header {
+  background-color: #524649;
+  color: #B2A1B1;
+}
+
+h1 {
+  font-weight: 800;
+}
+
+.header__title--span {
+  color: #FFFFFF;
+}
+
+.input--form {
+  background-color: #EAEAEA;
+}
+
