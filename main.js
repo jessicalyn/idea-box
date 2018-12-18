@@ -5,6 +5,9 @@ var inputTitle = document.querySelector('.input-form__title');
 var inputBody = document.querySelector('.input-form__body');
 var btnSave = document.querySelector('.input-form__save');
 var cardField = document.querySelector('.ideas');
+var arrayCards = JSON.parse(localStorage.getItem("arrayCards")) || [];
+
+
 
 // ====================Event Listeners======================
 // *********************************************************
@@ -12,16 +15,20 @@ var cardField = document.querySelector('.ideas');
 inputBody.addEventListener('input', enableSave);
 btnSave.addEventListener('click', saveIdea);
 
-// ====================Functions============================
+// ============Functions========================
 // *********************************************************
 function enableSave(){
 	if (inputBody.value !== ""){
+		// console.log('is this thing on?');
 		btnSave.disabled = false;
 	}
 }
 
 function saveIdea(e){
 	e.preventDefault();
+	var newIdeaInstance = new Idea(Date.now(), inputTitle.value, inputBody.value);
+	arrayCards.push(newIdeaInstance);
+	newIdeaInstance.saveToStorage(arrayCards);
 	createCard();
 }
 
