@@ -6,7 +6,7 @@ var inputTitle = document.querySelector('.input-form__title');
 var inputBody = document.querySelector('.input-form__body');
 var btnSave = document.querySelector('.input-form__save');
 var cardField = document.querySelector('.ideas');
-var arrayCards = JSON.parse(localStorage.getItem("arrayCards")) || [];
+var arrayCards = [];
 
 
 
@@ -18,6 +18,21 @@ btnSave.addEventListener('click', saveIdea);
 
 // ============Functions========================
 // *********************************************************
+
+window.onload = function (){
+	var parseArray = JSON.parse(localStorage.getItem("arrayCards"));
+	parseArray.forEach(function(storedIdea){
+		var id = storedIdea.id;
+		var title = storedIdea.title;
+		var body = storedIdea.body;
+		var quality = storedIdea.quality;
+		var pageIdea = new Idea(id, title, body, quality);
+		arrayCards.push(pageIdea);
+		// add quality to createCard
+		createCard(title, body)
+	})
+}
+
 function enableSave(){
 	if (inputBody.value !== ""){
 		// console.log('is this thing on?');
@@ -30,12 +45,10 @@ function saveIdea(e){
 	var newIdeaInstance = new Idea(Date.now(), inputTitle.value, inputBody.value);
 	arrayCards.push(newIdeaInstance);
 	newIdeaInstance.saveToStorage(arrayCards);
-	createCard();
+	createCard(inputTitle.value, inputBody.value);
 }
-
+// add quality to createCard
 function createCard(title, body) {
-	var title = inputTitle.value;
-	var body = inputBody.value;
 	var newCard = 
 	`<section class="ideas__card">
 	<article class="card__text">
