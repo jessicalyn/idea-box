@@ -49,35 +49,24 @@ function saveIdea(e){
 }
 // add quality to createCard
 function createCard(title, body) {
-	var newCard =
-	`<section class="ideas__card">
-	<article class="card__text">
-	<h2 class="text--title">${title}</h2>
-	<p class="text--body">${body}</p>
-	</article>
-	<section class="card__btn">
-	<button class="btn--up"></button>
-	<button class="btn--dwn"></button>
-	<button class="btn--kill"></button>
-	</section>
-	</section>`
-	cardField.innerHTML = newCard + cardField.innerHTML;
-}
 
-function createSearchCard(name, content){
-	var searchCard =
-	`<section class="ideas__card">
-	<article class="card__text">
-	<h2 class="text--title">${name}</h2>
-	<p class="text--body">${content}</p>
-	</article>
-	<section class="card__btn">
-	<button class="btn--up"></button>
-	<button class="btn--dwn"></button>
-	<button class="btn--kill"></button>
-	</section>
-	</section>`
-	cardField.innerHTML = searchCard + cardField.innerHTML;
+	var newCard = 
+	`<section class="ideas__container">
+			<section class="ideas__card">
+				<article class="card__text">
+					<h2 class="text--title">${title}</h2>
+					<p class="text--body">${body}
+					</p>
+				</article>
+				<section class="card-btns__container">
+					<input class="btn--dwn card-btns" type="image" alt="Down-Vote Idea Button" src="assets/downvote.svg">
+					<input class="btn--up card-btns" type="image" alt="Up-Vote Idea Button" src="assets/upvote.svg">
+					<h3 class="card-btns__quality">Quality: <span class="card-btns__change-quality">Swill</span></h3>
+					<input class="btn--kill card-btns" type="image" alt="Delete Idea Button" src="assets/delete.svg">
+				</section>
+			</section>
+		</section>`
+	cardField.innerHTML = newCard + cardField.innerHTML;
 }
 
 function searchResults(){
