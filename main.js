@@ -12,7 +12,7 @@ var arrayCards = [];
 
 // ====================Event Listeners======================
 // *********************************************************
-btnSearch.addEventListener('click', searchResults);
+inputSearch.addEventListener('input', searchResults);
 inputBody.addEventListener('input', enableSave);
 btnSave.addEventListener('click', saveIdea);
 
@@ -80,8 +80,9 @@ function createSearchCard(name, content){
 	cardField.innerHTML = searchCard + cardField.innerHTML;
 }
 
-function searchResults(e){
-	e.preventDefault();
+function searchResults(){
+	// e.preventDefault();
+	cardField.innerHTML = '';
 	var inputSrch = inputSearch.value;
 	// arrayCards.forEach(function(arrayCard){
 	// 	if (arrayCard.title.includes(inputSrch) || arrayCard.body.includes(inputSrch)){
@@ -92,6 +93,6 @@ function searchResults(e){
 		return (arrayCard.title.includes(inputSrch) || arrayCard.body.includes(inputSrch));
 	});
 	filtered.forEach(function(filtCard){
-		createSearchCard(filtCard.title, filtCard.body);
+		createCard(filtCard.title, filtCard.body);
 	});
 }
