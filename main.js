@@ -49,7 +49,7 @@ function saveIdea(e){
 }
 // add quality to createCard
 function createCard(title, body) {
-	var newCard = 
+	var newCard =
 	`<section class="ideas__card">
 	<article class="card__text">
 	<h2 class="text--title">${title}</h2>
