@@ -49,6 +49,7 @@ function saveIdea(e){
 }
 // add quality to createCard
 function createCard(title, body) {
+
 	var newCard = 
 	`<section class="ideas__container">
 			<section class="ideas__card">
@@ -66,22 +67,6 @@ function createCard(title, body) {
 			</section>
 		</section>`
 	cardField.innerHTML = newCard + cardField.innerHTML;
-}
-
-function createSearchCard(name, content){
-	var searchCard =
-	`<section class="ideas__card">
-	<article class="card__text">
-	<h2 class="text--title">${name}</h2>
-	<p class="text--body">${content}</p>
-	</article>
-	<section class="card__btn">
-	<button class="btn--up"></button>
-	<button class="btn--dwn"></button>
-	<button class="btn--kill"></button>
-	</section>
-	</section>`
-	cardField.innerHTML = searchCard + cardField.innerHTML;
 }
 
 function searchResults(){
