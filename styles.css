@@ -71,7 +71,8 @@ h1 {
   background-color: #EAEAEA;
   }
 
-.input-form__container {
+.input-form__container,
+.ideas__container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -96,10 +97,6 @@ h1 {
   padding: 5px;
 }
 
-.input-form__body {
-  height: 75px;
-}
-
 .input-form__save {
   background-color: #6E646B;
   color: #FFFFFF;
@@ -120,10 +117,10 @@ h1 {
   background-color: #FFFFFF;
 }
 
-.ideas__card {
-  
-}
-
 h2 {
   color: #6E646B;
+}
+
+.card__btn {
+  width: 10px;
 }
