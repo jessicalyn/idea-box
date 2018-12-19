@@ -94,7 +94,6 @@ h1 {
   border: 2px solid #D2CCCD;
   border-radius: 4px;
   margin: 5px 0px;
-  padding: 5px;
 }
 
 .input-form__save {
@@ -117,10 +116,44 @@ h1 {
   background-color: #FFFFFF;
 }
 
+.card__text {
+  padding: 5px;
+}
+
 h2 {
   color: #6E646B;
 }
 
-.card__btn {
-  width: 10px;
+.card-btns__container {
+  border-top: 2px solid #D2CCCD;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 40px 40px 1fr 40px;
+  grid-template-areas: 
+  "down up quality delete";
+}
+
+.card-btns {
+  width: 30px;
+  margin: 0 5px;
+}
+
+.btn--dwn {
+  grid-area: down;
+}
+
+.btn--up {
+  grid-area: up;
+}
+
+.card-btns__quality {
+  grid-area: quality;
+  margin: 8px;
+  font-size: 14px; 
+  font-weight: 800;
+}
+
+.btn--kill {
+  grid-area: delete;
+  /*float: right;*/
 }
