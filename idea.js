@@ -18,10 +18,12 @@ class Idea {
 	updateContent(){
 		//update title or body of the idea
 		//be able to edit after it has been posted
+		
 	}
 
 	updateQuality(){
 		//be able to upvote/downvote and keep track
 		//do we need an array?
+		
 	}
 }
