@@ -54,8 +54,8 @@ function createCard(title, body) {
 	`<section class="ideas__container">
 			<section class="ideas__card">
 				<article class="card__text">
-					<h2 class="text--title">${title}</h2>
-					<p class="text--body">${body}
+					<h2 class="text--title" contenteditable="true">${title}</h2>
+					<p class="text--body" contenteditable="true">${body}
 					</p>
 				</article>
 				<section class="card-btns__container">
