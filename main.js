@@ -6,18 +6,33 @@ var inputTitle = document.querySelector('.input-form__title');
 var inputBody = document.querySelector('.input-form__body');
 var btnSave = document.querySelector('.input-form__save');
 var cardField = document.querySelector('.ideas');
-var arrayCards = JSON.parse(localStorage.getItem("arrayCards")) || [];
+var arrayCards = [];
 
 
 
 // ====================Event Listeners======================
 // *********************************************************
-btnSearch.addEventListener('click', searchResults);
+inputSearch.addEventListener('input', searchResults);
 inputBody.addEventListener('input', enableSave);
 btnSave.addEventListener('click', saveIdea);
 
 // ============Functions========================
 // *********************************************************
+
+window.onload = function (){
+	var parseArray = JSON.parse(localStorage.getItem("arrayCards"));
+	parseArray.forEach(function(storedIdea){
+		var id = storedIdea.id;
+		var title = storedIdea.title;
+		var body = storedIdea.body;
+		var quality = storedIdea.quality;
+		var pageIdea = new Idea(id, title, body, quality);
+		arrayCards.push(pageIdea);
+		// add quality to createCard
+		createCard(title, body)
+	})
+}
+
 function enableSave(){
 	if (inputBody.value !== ""){
 		// console.log('is this thing on?');
@@ -30,12 +45,10 @@ function saveIdea(e){
 	var newIdeaInstance = new Idea(Date.now(), inputTitle.value, inputBody.value);
 	arrayCards.push(newIdeaInstance);
 	newIdeaInstance.saveToStorage(arrayCards);
-	createCard();
+	createCard(inputTitle.value, inputBody.value);
 }
-
+// add quality to createCard
 function createCard(title, body) {
-	var title = inputTitle.value;
-	var body = inputBody.value;
 	var newCard = 
 	`<section class="ideas__card">
 	<article class="card__text">
@@ -67,8 +80,9 @@ function createSearchCard(name, content){
 	cardField.innerHTML = searchCard + cardField.innerHTML;
 }
 
-function searchResults(e){
-	e.preventDefault();
+function searchResults(){
+	// e.preventDefault();
+	cardField.innerHTML = '';
 	var inputSrch = inputSearch.value;
 	// arrayCards.forEach(function(arrayCard){
 	// 	if (arrayCard.title.includes(inputSrch) || arrayCard.body.includes(inputSrch)){
@@ -79,6 +93,6 @@ function searchResults(e){
 		return (arrayCard.title.includes(inputSrch) || arrayCard.body.includes(inputSrch));
 	});
 	filtered.forEach(function(filtCard){
-		createSearchCard(filtCard.title, filtCard.body);
+		createCard(filtCard.title, filtCard.body);
 	});
 }
