@@ -15,6 +15,7 @@ var arrayCards = [];
 inputSearch.addEventListener('input', searchResults);
 inputBody.addEventListener('input', enableSave);
 btnSave.addEventListener('click', saveIdea);
+cardField.addEventListener('click', deleteCard);
 
 // ============Functions========================
 // *********************************************************
@@ -35,7 +36,6 @@ window.onload = function (){
 
 function enableSave(){
 	if (inputBody.value !== ""){
-		// console.log('is this thing on?');
 		btnSave.disabled = false;
 	}
 }
@@ -49,7 +49,6 @@ function saveIdea(e){
 }
 // add quality to createCard
 function createCard(title, body) {
-
 	var newCard = 
 	`<section class="ideas__container">
 			<section class="ideas__card">
@@ -62,11 +61,18 @@ function createCard(title, body) {
 					<input class="btn--dwn card-btns" type="image" alt="Down-Vote Idea Button" src="assets/downvote.svg">
 					<input class="btn--up card-btns" type="image" alt="Up-Vote Idea Button" src="assets/upvote.svg">
 					<h3 class="card-btns__quality">Quality: <span class="card-btns__change-quality">Swill</span></h3>
-					<input class="btn--kill card-btns" type="image" alt="Delete Idea Button" src="assets/delete.svg">
+					<input id="killSwitch" class="btn--kill card-btns" type="image" alt="Delete Idea Button" src="assets/delete.svg">
 				</section>
 			</section>
 		</section>`
 	cardField.innerHTML = newCard + cardField.innerHTML;
+}
+
+function deleteCard() {
+	var killSwitch = document.getElementById(killSwitch)
+	console.log('kinda working')
+  	killSwitch.parentNode.removeChild(killSwitch);
+    console.log('almost there');
 }
 
 function searchResults(){
