@@ -15,6 +15,7 @@ var arrayCards = [];
 inputSearch.addEventListener('input', searchResults);
 inputBody.addEventListener('input', enableSave);
 btnSave.addEventListener('click', saveIdea);
+cardField.addEventListener('click', deleteCard);
 
 // ============Functions========================
 // *********************************************************
@@ -35,7 +36,6 @@ window.onload = function (){
 
 function enableSave(){
 	if (inputBody.value !== ""){
-		// console.log('is this thing on?');
 		btnSave.disabled = false;
 	}
 }
@@ -52,8 +52,6 @@ function saveIdea(e){
 	console.log(newIdeaInstance.title);
 	console.log(newIdeaInstance.body);
 }
-
-
 
 function createCard(id, title, body, quality) {
 	var newCard =
@@ -73,6 +71,13 @@ function createCard(id, title, body, quality) {
 			</section>
 		</section>`
 	cardField.innerHTML = newCard + cardField.innerHTML;
+}
+
+function deleteCard() {
+	var killSwitch = document.getElementById(killSwitch)
+	console.log('kinda working')
+  	killSwitch.parentNode.removeChild(killSwitch);
+    console.log('almost there');
 }
 
 function searchResults(){
