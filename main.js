@@ -46,11 +46,13 @@ function saveIdea(e){
 	arrayCards.push(newIdeaInstance);
 	newIdeaInstance.saveToStorage(arrayCards);
 	createCard(inputTitle.value, inputBody.value);
+	inputTitle.value = '';
+	inputBody.value = '';
 }
 // add quality to createCard
 function createCard(title, body) {
 
-	var newCard = 
+	var newCard =
 	`<section class="ideas__container">
 			<section class="ideas__card">
 				<article class="card__text">
