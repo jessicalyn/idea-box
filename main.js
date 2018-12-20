@@ -29,7 +29,7 @@ window.onload = function (){
 		var pageIdea = new Idea(id, title, body, quality);
 		arrayCards.push(pageIdea);
 		// add quality to createCard
-		createCard(title, body)
+		createCard(id, title, body, quality)
 	})
 }
 
@@ -48,10 +48,14 @@ function saveIdea(e){
 	createCard(inputTitle.value, inputBody.value);
 	inputTitle.value = '';
 	inputBody.value = '';
+	console.log(newIdeaInstance.id);
+	console.log(newIdeaInstance.title);
+	console.log(newIdeaInstance.body);
 }
-// add quality to createCard
-function createCard(title, body) {
 
+
+
+function createCard(id, title, body, quality) {
 	var newCard =
 	`<section class="ideas__container">
 			<section class="ideas__card">
@@ -63,8 +67,8 @@ function createCard(title, body) {
 				<section class="card-btns__container">
 					<input class="btn--dwn card-btns" type="image" alt="Down-Vote Idea Button" src="assets/downvote.svg">
 					<input class="btn--up card-btns" type="image" alt="Up-Vote Idea Button" src="assets/upvote.svg">
-					<h3 class="card-btns__quality">Quality: <span class="card-btns__change-quality">Swill</span></h3>
-					<input class="btn--kill card-btns" type="image" alt="Delete Idea Button" src="assets/delete.svg">
+					<h3 class="card-btns__quality">Quality: <span class="card-btns__change-quality">${quality}</span></h3>
+					<input id=${id} class="btn--kill card-btns" type="image" alt="Delete Idea Button" src="assets/delete.svg">
 				</section>
 			</section>
 		</section>`
