@@ -11,8 +11,10 @@ class Idea {
 		localStorage.setItem("arrayCards", JSON.stringify(arrayCards));
 	}
 
-	deleteFromStorage(){
+	deleteFromStorage(arrayCards, index){
 		//delete card from storage
+    arrayCards.splice(index, 1)
+    this.saveToStorage(arrayCards);
 	}
 
 	updateContent(){
