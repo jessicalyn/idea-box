@@ -72,7 +72,8 @@ h1 {
   }
 
 .input-form__container,
-.ideas__container {
+.ideas__container,
+.filter {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -122,6 +123,28 @@ h1 {
 
 h2 {
   color: #6E646B;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid #D2CCCD;
+}
+
+.filter__container {
+  width: 100%;
+}
+
+.filter__container--button {
+  padding: 5px;
+  margin: 10px;
+  width: 30%;
+  background-color: #6E646B;
+  color: #FFFFFF;
+  border-radius: 4px;
+  font-weight: 800;
 }
 
 .card-btns__container {
