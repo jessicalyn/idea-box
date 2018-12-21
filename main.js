@@ -75,11 +75,18 @@ function createCard(id, title, body, quality) {
 	cardField.innerHTML = newCard + cardField.innerHTML;
 }
 
-function deleteCard() {
-	var killSwitch = document.getElementById(killSwitch)
-	console.log('kinda working')
-  	killSwitch.parentNode.removeChild(killSwitch);
-    console.log('almost there');
+function deleteCard(event) {
+	// var killSwitch = document.getElementById(killSwitch)
+	// console.log('kinda working')
+  // 	// killSwitch.parentNode.removeChild(killSwitch);
+  //   console.log('almost there');
+	if (event.target.classList.contains('btn--kill')){
+		var indexToDelete = arrayCards.findIndex(function(idea) {
+			return idea.id === parseInt(event.target.id)
+		})
+		arrayCards[indexToDelete].deleteFromStorage(arrayCards, indexToDelete);
+		event.target.closest('.ideas__container').remove();
+	}
 }
 
 function searchResults(){
