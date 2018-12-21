@@ -3,7 +3,7 @@ class Idea {
 		this.id = id;
 		this.title = title;
 		this.body = body;
-		this.quality = quality || 'swill';
+		this.quality = quality;
 	}
 
 	saveToStorage(arrayCards){
@@ -18,12 +18,12 @@ class Idea {
 	updateContent(){
 		//update title or body of the idea
 		//be able to edit after it has been posted
-		
+
 	}
 
 	updateQuality(){
 		//be able to upvote/downvote and keep track
 		//do we need an array?
-		
+
 	}
 }

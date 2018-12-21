@@ -21,17 +21,18 @@ cardField.addEventListener('click', deleteCard);
 // *********************************************************
 
 window.onload = function (){
-	var parseArray = JSON.parse(localStorage.getItem("arrayCards"));
-	parseArray.forEach(function(storedIdea){
-		var id = storedIdea.id;
-		var title = storedIdea.title;
-		var body = storedIdea.body;
-		var quality = storedIdea.quality;
-		var pageIdea = new Idea(id, title, body, quality);
-		arrayCards.push(pageIdea);
-		// add quality to createCard
-		createCard(id, title, body, quality)
-	})
+	if(localStorage.getItem("arrayCards")){
+		var parseArray = JSON.parse(localStorage.getItem("arrayCards"));
+		parseArray.forEach(function(storedIdea){
+			var id = storedIdea.id;
+			var title = storedIdea.title;
+			var body = storedIdea.body;
+			var quality = storedIdea.quality;
+			var pageIdea = new Idea(id, title, body, quality);
+			arrayCards.push(pageIdea);
+			createCard(id, title, body, quality)
+		})
+	}
 }
 
 function enableSave(){
@@ -42,15 +43,16 @@ function enableSave(){
 
 function saveIdea(e){
 	e.preventDefault();
-	var newIdeaInstance = new Idea(Date.now(), inputTitle.value, inputBody.value);
+	var id = Date.now();
+	var title = inputTitle.value;
+	var body = inputBody.value;
+	var quality = 'swill';
+	var newIdeaInstance = new Idea(id, title, body, quality);
 	arrayCards.push(newIdeaInstance);
 	newIdeaInstance.saveToStorage(arrayCards);
-	createCard(inputTitle.value, inputBody.value);
+	createCard(id, title, body, quality);
 	inputTitle.value = '';
 	inputBody.value = '';
-	console.log(newIdeaInstance.id);
-	console.log(newIdeaInstance.title);
-	console.log(newIdeaInstance.body);
 }
 
 function createCard(id, title, body, quality) {
@@ -83,15 +85,18 @@ function deleteCard() {
 function searchResults(){
 	// e.preventDefault();
 	cardField.innerHTML = '';
-	var inputSrch = inputSearch.value;
+	var inputSrch = inputSearch.value.toUpperCase();
 	// arrayCards.forEach(function(arrayCard){
 	// 	if (arrayCard.title.includes(inputSrch) || arrayCard.body.includes(inputSrch)){
 	// 		createSearchCard(arrayCard.title, arrayCard.body)
 	// 	}
 	// });
 	var filtered = arrayCards.filter(function(arrayCard){
-		return (arrayCard.title.includes(inputSrch) || arrayCard.body.includes(inputSrch));
+		var titleSearch = array.title.toUpperCase();
+		var bodySearch = array.body.toUpperCase();
+		return titleSearch.includes(inputSrch) || bodySearch.includes(inputSrch);
 	});
+
 	filtered.forEach(function(filtCard){
 		createCard(filtCard.title, filtCard.body);
 	});
