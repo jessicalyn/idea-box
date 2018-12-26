@@ -98,13 +98,28 @@ function searchResults(){
 	// 		createSearchCard(arrayCard.title, arrayCard.body)
 	// 	}
 	// });
+	// ///////////////////////////////////////////////////////
+	// if(localStorage.getItem("arrayCards")){
+	// 	var parseArray = JSON.parse(localStorage.getItem("arrayCards"));
+	// 	parseArray.forEach(function(storedIdea){
+	// 		var id = storedIdea.id;
+	// 		var title = storedIdea.title;
+	// 		var body = storedIdea.body;
+	// 		var quality = storedIdea.quality;
+	// 		var pageIdea = new Idea(id, title, body, quality);
+	// 		arrayCards.push(pageIdea);
+	// 		// createCard(id, title, body, quality)
+	// 	})
+	// }
+	// ///////////////////////////////////////////////////////
 	var filtered = arrayCards.filter(function(arrayCard){
-		var titleSearch = array.title.toUpperCase();
-		var bodySearch = array.body.toUpperCase();
+		var titleSearch = arrayCard.title.toUpperCase();
+		var bodySearch = arrayCard.body.toUpperCase();
+		console.log("almost there")
 		return titleSearch.includes(inputSrch) || bodySearch.includes(inputSrch);
 	});
 
 	filtered.forEach(function(filtCard){
-		createCard(filtCard.title, filtCard.body);
+		createCard(filtCard.id, filtCard.title, filtCard.body, filtCard.quality);
 	});
 }
