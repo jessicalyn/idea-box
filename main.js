@@ -8,8 +8,6 @@ var btnSave = document.querySelector('.input-form__save');
 var cardField = document.querySelector('.ideas');
 var arrayCards = [];
 
-
-
 // ====================Event Listeners======================
 // *********************************************************
 inputSearch.addEventListener('input', searchResults);
@@ -19,7 +17,6 @@ cardField.addEventListener('click', deleteCard);
 
 // ============Functions========================
 // *********************************************************
-
 window.onload = function (){
 	if(localStorage.getItem("arrayCards")){
 		var parseArray = JSON.parse(localStorage.getItem("arrayCards"));
@@ -57,7 +54,7 @@ function saveIdea(e){
 
 function createCard(id, title, body, quality) {
 	var newCard =
-	`<section class="ideas__container">
+	`<section id=${id} class="ideas__container">
 			<section class="ideas__card">
 				<article class="card__text">
 					<h2 class="text--title" contenteditable="true">${title}</h2>
@@ -75,6 +72,24 @@ function createCard(id, title, body, quality) {
 	cardField.innerHTML = newCard + cardField.innerHTML;
 }
 
+function changeQuality(event) {
+	var cardId = event.target.parentElement.parentElement.parentElement.id;
+	var qualityOnCard = event.target.parentElement.childNodes[5].childNodes[1];
+	var qualityArray = ['swill', 'plausible', 'genius'];
+	var currentQualityIndex = qualityArray.indexOf(qualityOnCard.innerText);
+	if (event.target.classList.contains('btn--dwn') && qualityOnCard.innerText != 'swill') {
+		 qualityOnCard.innerText = qualityArray[currentQualityIndex -1]
+	}
+	if (event.target.classList.contains('btn--up') && qualityOnCard.innerText != 'genius') {
+		 qualityOnCard.innerText = qualityArray[currentQualityIndex +1];
+	}
+	 var indexToChange = arrayCards.find(function(idea) {
+		 return idea.id === parseInt(cardId);
+	})
+	 indexToChange.updateQuality(arrayCards, qualityOnCard.innerText);
+}
+
+
 function deleteCard(event) {
 	// var killSwitch = document.getElementById(killSwitch)
 	// console.log('kinda working')
@@ -87,6 +102,7 @@ function deleteCard(event) {
 		arrayCards[indexToDelete].deleteFromStorage(arrayCards, indexToDelete);
 		event.target.closest('.ideas__container').remove();
 	}
+	changeQuality(event);
 }
 
 function searchResults(){
