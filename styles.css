@@ -9,6 +9,10 @@
 body {
   font-family: 'Open Sans', sans-serif;
   color: #7C7879;
+  /*-webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;*/
 }
 
 header {
@@ -84,6 +88,7 @@ h1 {
   margin: 0 auto;
   padding: 10px;
 }
+
 .input-form__labels,
 .input-form__save {
   margin-top: 10px;
@@ -192,4 +197,50 @@ h2 {
 .btn--kill {
   grid-area: delete;
   /*float: right;*/
+}
+
+@media screen and (max-width: 800px) {
+  .input-form__container,
+  .filter,
+  .ideas {
+    width: 75%;
+  }
+
+  .filter__container--button {
+    margin: 10px 5px;
+  }
+
+  .ideas {
+    margin: 0 auto;
+  }
+
+  .ideas__container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    height: 5.5em;
+  }
+
+  .header__search {
+    margin-left: 10px;
+    margin-bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .input-form__container,
+  .filter,
+  .ideas {
+    width: 90%;
+  }
+
+  .filter__container--button {
+    /*font-weight: 400;*/
+    font-size: 12px;
+  }
 }
