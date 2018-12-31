@@ -15,6 +15,7 @@ inputBody.addEventListener('input', enableSave);
 btnSave.addEventListener('click', saveIdea);
 cardField.addEventListener('click', deleteCard);
 
+
 // ============Functions========================
 // *********************************************************
 window.onload = function (){
@@ -90,6 +91,23 @@ function changeQuality(event) {
 }
 
 
+// If I click into the title or body section of a card,
+// I should be able to edit the text,
+// Once I edit the text and click outside of the text field,
+// It should then be updated to the localStorage array.
+function updateContent(event) {
+	var cardId = event.target.parentElement.parentElement.parentElement.id;
+	var indexToChange = arrayCards.find(function(idea) {
+		return idea.id === parseInt(cardId);
+	});
+	if (e.target.className === 'idea-title') {
+		idea.updateContent(e.target.innerText, 'title');
+	}
+	if (e.target.className === 'idea-body') {
+		idea.updateContent(e.target.innerText, 'body');
+	}
+}
+
 function deleteCard(event) {
 	// var killSwitch = document.getElementById(killSwitch)
 	// console.log('kinda working')
@@ -103,6 +121,8 @@ function deleteCard(event) {
 		event.target.closest('.ideas__container').remove();
 	}
 	changeQuality(event);
+	updateContent(event);
+	console.log("this is being called")
 }
 
 function searchResults(){

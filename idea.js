@@ -17,9 +17,16 @@ class Idea {
     this.saveToStorage(arrayCards);
 	}
 
-	updateContent(){
+	updateContent(text, type){
 		//update title or body of the idea
 		//be able to edit after it has been posted
+		if (type === 'title') {
+			this.title = text;
+		}
+		if (type === 'body') {
+			this.body = text;
+		}
+		this.setToStorage();
 	}
 
 	updateQuality(arrayCards, newQuality){
