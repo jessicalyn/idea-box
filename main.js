@@ -20,6 +20,8 @@ btnSwill.addEventListener('click', filterSwill);
 btnPlausible.addEventListener('click', filterPlausible);
 btnGenius.addEventListener('click', filterGenius);
 cardField.addEventListener('click', deleteCard);
+cardField.addEventListener('click', ideaEvents);
+cardField.addEventListener('focusout', changeContent);
 
 // ============Functions========================
 // *********************************************************
@@ -78,10 +80,35 @@ function createCard(id, title, body, quality) {
 	cardField.innerHTML = newCard + cardField.innerHTML;
 }
 
+function ideaEvents(event) {
+	if (event.target.classList.contains('btn--kill')){
+		deleteCard(event);
+	} else if (event.target.classList.contains('btn--dwn')) {
+		changeQuality(event);
+	} else if (event.target.classList.contains('btn--up')) {
+		changeQuality(event);
+	}
+}
+
+function changeContent(event) {
+	var cardId = event.target.parentElement.parentElement.parentElement.id;
+	var changeTitleContent = event.target.parentElement.childNodes[1];
+	var titleText = document.querySelector('.text--title');
+	// var changeBodyContent = event.target.parentElement.childNodes[3];
+	console.log(event.target.classList);
+	if (event.target.classList.contains('ideas__card')) {
+		console.log('PLEASE');
+		// saveToStorage(titleText.innerText)
+	}
+	// if (event.target.classList.contains('text--body') {
+
+	// }
+}
+
 function changeQuality(event) {
 	var cardId = event.target.parentElement.parentElement.parentElement.id;
-	var qualityOnCard = event.target.parentElement.childNodes[5].childNodes[1];
 	var qualityArray = ['swill', 'plausible', 'genius'];
+	var qualityOnCard = event.target.parentElement.childNodes[5].childNodes[1];
 	var currentQualityIndex = qualityArray.indexOf(qualityOnCard.innerText);
 	if (event.target.classList.contains('btn--dwn') && qualityOnCard.innerText != 'swill') {
 		qualityOnCard.innerText = qualityArray[currentQualityIndex -1]
@@ -112,19 +139,13 @@ function updateContent(event) {
 }
 
 function deleteCard(event) {
-	// var killSwitch = document.getElementById(killSwitch)
-	// console.log('kinda working')
-  // 	// killSwitch.parentNode.removeChild(killSwitch);
-  //   console.log('almost there');
-  if (event.target.classList.contains('btn--kill')){
-  	var indexToDelete = arrayCards.findIndex(function(idea) {
-  		return idea.id === parseInt(event.target.id)
-  	})
-  	arrayCards[indexToDelete].deleteFromStorage(arrayCards, indexToDelete);
-  	event.target.closest('.ideas__container').remove();
-  }
-  changeQuality(event);
-  updateContent("works", 'title');
+	if (event.target.classList.contains('btn--kill')){
+		var indexToDelete = arrayCards.findIndex(function(idea) {
+			return idea.id === parseInt(event.target.id)
+		})
+		arrayCards[indexToDelete].deleteFromStorage(arrayCards, indexToDelete);
+		event.target.closest('.ideas__container').remove();
+	}
 }
 
 function searchResults(){

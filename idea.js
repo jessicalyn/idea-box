@@ -20,6 +20,8 @@ class Idea {
 	updateContent(text, type){
 		//update title or body of the idea
 		//be able to edit after it has been posted
+		// if category = title then do this.title = new txt
+		// this.saveToStorage(arrayCards);
 		if (type === 'title') {
 			this.title = text;
 		} 
@@ -28,7 +30,6 @@ class Idea {
 		}
 		this.saveToStorage(text, type);
 	} 
-
 
 updateQuality(arrayCards, newQuality){
 	this.quality = newQuality;
