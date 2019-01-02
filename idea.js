@@ -18,8 +18,11 @@ class Idea {
 	}
 
 	updateContent(){
+		// innerText, category
 		//update title or body of the idea
 		//be able to edit after it has been posted
+		// if category = title then do this.title = new txt
+		// this.saveToStorage(arrayCards);
 	}
 
 	updateQuality(arrayCards, newQuality){
