@@ -13,17 +13,25 @@ class Idea {
 
 	deleteFromStorage(arrayCards, index){
 		//delete card from storage
-    arrayCards.splice(index, 1)
-    this.saveToStorage(arrayCards);
-	}
-
-	updateContent(){
-		//update title or body of the idea
-		//be able to edit after it has been posted
-	}
-
-	updateQuality(arrayCards, newQuality){
-		this.quality = newQuality;
+		arrayCards.splice(index, 1)
 		this.saveToStorage(arrayCards);
 	}
+
+	updateContent(text, type){
+		//update title or body of the idea
+		//be able to edit after it has been posted
+		if (type === 'title') {
+			this.title = text;
+		} 
+		if (type === 'body') {
+			this.body = text;
+		}
+		this.saveToStorage(text, type);
+	} 
+
+
+updateQuality(arrayCards, newQuality){
+	this.quality = newQuality;
+	this.saveToStorage(arrayCards);
+}
 }
