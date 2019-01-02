@@ -5,6 +5,9 @@ var inputSearch = document.querySelector('.header__search--input');
 var inputTitle = document.querySelector('.input-form__title');
 var inputBody = document.querySelector('.input-form__body');
 var btnSave = document.querySelector('.input-form__save');
+var btnSwill = document.getElementById('swill');
+var btnPlausible = document.getElementById('plausible');
+var btnGenius = document.getElementById('genius');
 var cardField = document.querySelector('.ideas');
 var arrayCards = [];
 
@@ -13,6 +16,9 @@ var arrayCards = [];
 inputSearch.addEventListener('input', searchResults);
 inputBody.addEventListener('input', enableSave);
 btnSave.addEventListener('click', saveIdea);
+btnSwill.addEventListener('click', filterSwill);
+btnPlausible.addEventListener('click', filterPlausible);
+btnGenius.addEventListener('click', filterGenius);
 cardField.addEventListener('click', deleteCard);
 
 // ============Functions========================
@@ -156,38 +162,37 @@ function searchResults(){
 	});
 }
 
-var btnSwill = document.getElementById('swill');
-var btnPlausible = document.getElementById('plausible');
-var btnGenius = document.getElementById('genius');
-
-btnSwill.addEventListener('click', filterQuality);
-btnPlausible.addEventListener('click', filterQuality);
-btnGenius.addEventListener('click', filterQuality);
-
-function filterQuality() {
-		cardField.innerHTML = '';
-	console.log('beginning');
+function filterSwill() {
+	cardField.innerHTML = '';
 	if (btnSwill) {
-		console.log('Its a long road ahead');
 		var filtered = arrayCards.filter(function(arrayCard){
-		var qualitySearch = arrayCard.quality;
-		console.log("almost there")
-		return qualitySearch.includes('swill');
+			var qualitySearch = arrayCard.quality;
+			return qualitySearch.includes('swill');
+		});
+	}
+	filtered.forEach(function(filtCard){
+		createCard(filtCard.id, filtCard.title, filtCard.body, filtCard.quality);
 	});
-	} else if (btnPlausible) {
-		console.log('Its a long road ahead');
+}
+function filterPlausible() {
+	cardField.innerHTML = '';
+	if (btnPlausible) {
 		var filtered = arrayCards.filter(function(arrayCard){
-		var qualitySearch = arrayCard.quality;
-		console.log("almost there")
-		return qualitySearch.includes('plausible');
+			var qualitySearch = arrayCard.quality;
+			return qualitySearch.includes('plausible');
+		});
+	}
+	filtered.forEach(function(filtCard){
+		createCard(filtCard.id, filtCard.title, filtCard.body, filtCard.quality);
 	});
-	} else if (btnGenius) {
-		console.log('Its a long road ahead');
+}
+function filterGenius() {
+	cardField.innerHTML = '';
+	if (btnGenius) {
 		var filtered = arrayCards.filter(function(arrayCard){
-		var qualitySearch = arrayCard.quality;
-		console.log("almost there")
-		return qualitySearch.includes('genius');
-	});
+			var qualitySearch = arrayCard.quality;
+			return qualitySearch.includes('genius');
+		});
 	}
 	filtered.forEach(function(filtCard){
 		createCard(filtCard.id, filtCard.title, filtCard.body, filtCard.quality);
