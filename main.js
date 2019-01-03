@@ -10,6 +10,7 @@ var btnPlausible = document.getElementById('plausible');
 var btnGenius = document.getElementById('genius');
 var cardField = document.querySelector('.ideas');
 var arrayCards = [];
+var showMoreLessButton = document.querySelector('.show-more__button');
 
 // ====================Event Listeners======================
 // *********************************************************
@@ -22,6 +23,7 @@ btnGenius.addEventListener('click', filterGenius);
 cardField.addEventListener('click', deleteCard);
 cardField.addEventListener('click', ideaEvents);
 cardField.addEventListener('focusout', changeContent);
+showMoreLessButton.addEventListener('click', showMoreIdeas);
 
 // ============Functions========================
 // *********************************************************
@@ -63,20 +65,20 @@ function saveIdea(e){
 function createCard(id, title, body, quality) {
 	var newCard =
 	`<section id=${id} class="ideas__container">
-	<section class="ideas__card">
-	<article class="card__text">
-	<h2 class="text--title" contenteditable="true">${title}</h2>
-	<p class="text--body" contenteditable="true">${body}
-	</p>
-	</article>
-	<section class="card-btns__container">
-	<input class="btn--dwn card-btns" type="image" alt="Down-Vote Idea Button" src="assets/downvote.svg">
-	<input class="btn--up card-btns" type="image" alt="Up-Vote Idea Button" src="assets/upvote.svg">
-	<h3 class="card-btns__quality">Quality: <span class="card-btns__change-quality">${quality}</span></h3>
-	<input id=${id} class="btn--kill card-btns" type="image" alt="Delete Idea Button" src="assets/delete.svg">
-	</section>
-	</section>
-	</section>`
+			<section class="ideas__card">
+				<article class="card__text">
+					<h2 class="text--title" contenteditable="true">${title}</h2>
+					<p class="text--body" contenteditable="true" style="overflow: auto; width: auto; height: 100px;">${body}
+					</p>
+				</article>
+				<section class="card-btns__container">
+					<input class="btn--dwn card-btns" type="image" alt="Down-Vote Idea Button" src="assets/downvote.svg">
+					<input class="btn--up card-btns" type="image" alt="Up-Vote Idea Button" src="assets/upvote.svg">
+					<h3 class="card-btns__quality">Quality: <span class="card-btns__change-quality">${quality}</span></h3>
+					<input id=${id} class="btn--kill card-btns" type="image" alt="Delete Idea Button" src="assets/delete.svg">
+				</section>
+			</section>
+		</section>`
 	cardField.innerHTML = newCard + cardField.innerHTML;
 }
 
@@ -182,6 +184,16 @@ function searchResults(){
 		createCard(filtCard.id, filtCard.title, filtCard.body, filtCard.quality);
 	});
 }
+
+function showMoreIdeas() {
+  if(showMoreLessButton.innerText === 'Show Less') {
+    cardField.style.height = '2450px';
+    cardField.style.overflow = 'hidden';
+    showMoreLessButton.innerText = 'Show More';
+} else {
+    showMoreLessButton.innerText = 'Show Less';
+    cardField.style.overflow = 'visible';
+  }
 
 function filterSwill() {
 	cardField.innerHTML = '';
