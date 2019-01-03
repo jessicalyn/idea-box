@@ -11,10 +11,11 @@ Finished. (Not Perfect)
 ## Screenshots
 ## Finished Project:
 **Full Screen**<br>
-
-**Shrunk a Little**<br>
+https://github.com/jessicalyn
+![image](https://user-images.githubusercontent.com/23123990/50647989-45317d80-0f37-11e9-9936-30c436f6a936.png)
 
 **Mobile**<br>
+![image](https://user-images.githubusercontent.com/23123990/50648092-8b86dc80-0f37-11e9-8723-c4d18bef64b4.png)
 
 ## Static Comp:
 ![image](https://user-images.githubusercontent.com/23123990/50647194-31851780-0f35-11e9-9f1f-f14a9659141b.png)
