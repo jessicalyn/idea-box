@@ -7,6 +7,7 @@ var inputBody = document.querySelector('.input-form__body');
 var btnSave = document.querySelector('.input-form__save');
 var cardField = document.querySelector('.ideas');
 var arrayCards = [];
+var showMoreLessButton = document.querySelector('.show-more__button');
 
 // ====================Event Listeners======================
 // *********************************************************
@@ -15,6 +16,7 @@ inputBody.addEventListener('input', enableSave);
 btnSave.addEventListener('click', saveIdea);
 cardField.addEventListener('click', ideaEvents);
 cardField.addEventListener('focusout', changeContent);
+showMoreLessButton.addEventListener('click', showMoreIdeas);
 
 // ============Functions========================
 // *********************************************************
@@ -59,7 +61,7 @@ function createCard(id, title, body, quality) {
 			<section class="ideas__card">
 				<article class="card__text">
 					<h2 class="text--title" contenteditable="true">${title}</h2>
-					<p class="text--body" contenteditable="true">${body}
+					<p class="text--body" contenteditable="true" style="overflow: auto; width: auto; height: 100px;">${body}
 					</p>
 				</article>
 				<section class="card-btns__container">
@@ -159,4 +161,15 @@ function searchResults(){
 	filtered.forEach(function(filtCard){
 		createCard(filtCard.id, filtCard.title, filtCard.body, filtCard.quality);
 	});
+}
+
+function showMoreIdeas() {
+  if(showMoreLessButton.innerText === 'Show Less') {
+    cardField.style.height = '2450px';
+    cardField.style.overflow = 'hidden';
+    showMoreLessButton.innerText = 'Show More';
+} else {
+    showMoreLessButton.innerText = 'Show Less';
+    cardField.style.overflow = 'visible';
+  }
 }
