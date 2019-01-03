@@ -5,6 +5,9 @@ var inputSearch = document.querySelector('.header__search--input');
 var inputTitle = document.querySelector('.input-form__title');
 var inputBody = document.querySelector('.input-form__body');
 var btnSave = document.querySelector('.input-form__save');
+var btnSwill = document.getElementById('swill');
+var btnPlausible = document.getElementById('plausible');
+var btnGenius = document.getElementById('genius');
 var cardField = document.querySelector('.ideas');
 var arrayCards = [];
 var showMoreLessButton = document.querySelector('.show-more__button');
@@ -14,6 +17,10 @@ var showMoreLessButton = document.querySelector('.show-more__button');
 inputSearch.addEventListener('input', searchResults);
 inputBody.addEventListener('input', enableSave);
 btnSave.addEventListener('click', saveIdea);
+btnSwill.addEventListener('click', filterSwill);
+btnPlausible.addEventListener('click', filterPlausible);
+btnGenius.addEventListener('click', filterGenius);
+cardField.addEventListener('click', deleteCard);
 cardField.addEventListener('click', ideaEvents);
 cardField.addEventListener('focusout', changeContent);
 showMoreLessButton.addEventListener('click', showMoreIdeas);
@@ -106,17 +113,32 @@ function changeQuality(event) {
 	var qualityOnCard = event.target.parentElement.childNodes[5].childNodes[1];
 	var currentQualityIndex = qualityArray.indexOf(qualityOnCard.innerText);
 	if (event.target.classList.contains('btn--dwn') && qualityOnCard.innerText != 'swill') {
-		 qualityOnCard.innerText = qualityArray[currentQualityIndex -1]
+		qualityOnCard.innerText = qualityArray[currentQualityIndex -1]
 	}
 	if (event.target.classList.contains('btn--up') && qualityOnCard.innerText != 'genius') {
-		 qualityOnCard.innerText = qualityArray[currentQualityIndex +1];
+		qualityOnCard.innerText = qualityArray[currentQualityIndex +1];
 	}
-	 var indexToChange = arrayCards.find(function(idea) {
-		 return idea.id === parseInt(cardId);
+	var indexToChange = arrayCards.find(function(idea) {
+		return idea.id === parseInt(cardId);
 	})
-	 indexToChange.updateQuality(arrayCards, qualityOnCard.innerText);
+	indexToChange.updateQuality(arrayCards, qualityOnCard.innerText);
 }
 
+// If I click into the title or body section of a card,
+// I should be able to edit the text,
+// Once I edit the text and click outside of the text field,
+// It should then be updated to the localStorage array.
+function updateContent(event) {
+	var cardId = event.target.parentElement.parentElement.parentElement.id;
+	var titleToChange = idea.title;
+	var bodyToChange = idea.body;
+	if (event.target.className === 'idea-title') {
+		idea.updateContent(e.target.innerText, 'title');
+	}
+	if (event.target.className === 'idea-body') {
+		idea.updateContent(e.target.innerText, 'body');
+	}
+}
 
 function deleteCard(event) {
 	if (event.target.classList.contains('btn--kill')){
@@ -172,4 +194,40 @@ function showMoreIdeas() {
     showMoreLessButton.innerText = 'Show Less';
     cardField.style.overflow = 'visible';
   }
+
+function filterSwill() {
+	cardField.innerHTML = '';
+	if (btnSwill) {
+		var filtered = arrayCards.filter(function(arrayCard){
+			var qualitySearch = arrayCard.quality;
+			return qualitySearch.includes('swill');
+		});
+	}
+	filtered.forEach(function(filtCard){
+		createCard(filtCard.id, filtCard.title, filtCard.body, filtCard.quality);
+	});
+}
+function filterPlausible() {
+	cardField.innerHTML = '';
+	if (btnPlausible) {
+		var filtered = arrayCards.filter(function(arrayCard){
+			var qualitySearch = arrayCard.quality;
+			return qualitySearch.includes('plausible');
+		});
+	}
+	filtered.forEach(function(filtCard){
+		createCard(filtCard.id, filtCard.title, filtCard.body, filtCard.quality);
+	});
+}
+function filterGenius() {
+	cardField.innerHTML = '';
+	if (btnGenius) {
+		var filtered = arrayCards.filter(function(arrayCard){
+			var qualitySearch = arrayCard.quality;
+			return qualitySearch.includes('genius');
+		});
+	}
+	filtered.forEach(function(filtCard){
+		createCard(filtCard.id, filtCard.title, filtCard.body, filtCard.quality);
+	});
 }
