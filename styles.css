@@ -76,23 +76,13 @@ h1 {
 
 .input-form__container,
 .ideas__container,
-.filter,
-.show-more__container {
+.filter {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   margin: 0 auto;
   padding: 10px;
   width: 60%;
-}
-
-.input-form__container {
-  padding-bottom: 0;
-}
-
-.filter {
-  padding: 0;
-  margin: 20px auto;
 }
 
 .input-form__labels,
@@ -117,16 +107,13 @@ h1 {
 
 .input-form__body {
   height: 8rem;
-  resize: none;
 }
 
-.input-form__save,
-.show-more__button {
+.input-form__save {
   background-color: #6E646B;
   border-radius: 4px;
   color: #FFFFFF;
   font-weight: 800;
-  font-size: 20px;
   margin: 1.25rem 0;
   padding: 5px;
 }
@@ -135,20 +122,12 @@ h1 {
   background-color: #C2C1C0;
 }
 
-.input-form__save:hover,
-.show-more__button:hover,
-.filter__container--button:hover {
+.input-form__save:hover {
   background-color: #524649;
 }
 
 .ideas {
   background-color: #FFFFFF;
-}
-
-hr {
-  width: 57.5%;
-  margin: 0 auto;
-  border-width: 2px;
 }
 
 .card__text {
@@ -157,13 +136,6 @@ hr {
 
 h2 {
   color: #6E646B;
-  margin: 10px;
-}
-
-.text--body {
-  margin: 5px 10px 10px 10px;
-  font-size: 18px;
-  font-weight: 300;
 }
 
 .filter {
