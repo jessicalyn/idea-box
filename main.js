@@ -37,7 +37,7 @@ window.onload = function (){
 			var quality = storedIdea.quality;
 			var pageIdea = new Idea(id, title, body, quality);
 			arrayCards.push(pageIdea);
-			createCard(id, title, body, quality)
+			createCard(id, title, body, quality);
 		})
 	}
 }
@@ -194,6 +194,7 @@ function showMoreIdeas() {
     showMoreLessButton.innerText = 'Show Less';
     cardField.style.overflow = 'visible';
   }
+}
 
 function filterSwill() {
 	cardField.innerHTML = '';
