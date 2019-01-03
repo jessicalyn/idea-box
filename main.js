@@ -9,6 +9,8 @@ var btnSwill = document.getElementById('swill');
 var btnPlausible = document.getElementById('plausible');
 var btnGenius = document.getElementById('genius');
 var cardField = document.querySelector('.ideas');
+var cardTitle = document.querySelector(".text--title")
+var cardTitle = document.querySelector(".text--title")
 var arrayCards = [];
 
 // ====================Event Listeners======================
@@ -90,21 +92,6 @@ function ideaEvents(event) {
 	}
 }
 
-function changeContent(event) {
-	var cardId = event.target.parentElement.parentElement.parentElement.id;
-	var changeTitleContent = event.target.parentElement.childNodes[1];
-	var titleText = document.querySelector('.text--title');
-	// var changeBodyContent = event.target.parentElement.childNodes[3];
-	console.log(event.target.classList);
-	if (event.target.classList.contains('ideas__card')) {
-		console.log('PLEASE');
-		// saveToStorage(titleText.innerText)
-	}
-	// if (event.target.classList.contains('text--body') {
-
-	// }
-}
-
 function changeQuality(event) {
 	var cardId = event.target.parentElement.parentElement.parentElement.id;
 	var qualityArray = ['swill', 'plausible', 'genius'];
@@ -128,15 +115,42 @@ function changeQuality(event) {
 // It should then be updated to the localStorage array.
 function updateContent(event) {
 	var cardId = event.target.parentElement.parentElement.parentElement.id;
+	console.log('this is: updateContent');
 	var titleToChange = idea.title;
 	var bodyToChange = idea.body;
-	if (event.target.className === 'idea-title') {
+	if (event.target.className === 'idea--title') {
 		idea.updateContent(e.target.innerText, 'title');
 	}
-	if (event.target.className === 'idea-body') {
+	if (event.target.className === 'idea--body') {
 		idea.updateContent(e.target.innerText, 'body');
 	}
 }
+
+function changeContent(event) {
+	console.log('this is: changeContent');
+	var cardId = event.target.parentElement.parentElement.parentElement.id;
+	var changeTitleContent = event.target.parentElement.childNodes[1];
+	var titleText = document.querySelector('.text--title');
+	var indexToChange = arrayCards.findIndex(function(idea) {
+			return idea.id === parseInt(event.target.id)
+			console.log("Look Over Here", idea)
+		});
+	// var changeBodyContent = event.target.parentElement.childNodes[3];
+	console.log(titleText.innerText, event.target.classList);
+	if (event.target.classList.contains("text--title")) {
+		console.log('PLEASE');
+
+		indexToChange.updateContent(titleText.innerText, 'title')
+	}
+	// if (event.target.classList.contains('text--body') {
+
+	// }
+}
+
+// ================================================================
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ================================================================
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 function deleteCard(event) {
 	if (event.target.classList.contains('btn--kill')){
